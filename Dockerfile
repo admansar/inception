@@ -1,3 +1,4 @@
-FROM ubuntu
-RUN apt update && apt upgrade -y 
-RUN apt install vim -y
+FROM alpine
+RUN apk update && apk upgrade --available
+RUN apk add vim
+COPY ./.ashrc /root/
