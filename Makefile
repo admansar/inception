@@ -1,24 +1,20 @@
-rm_containers = /home/adnan/some_usefull_scripts/rm_images.sh
-rm_images = /home/adnan/some_usefull_scripts/rm_containers.sh 
+containers=$(shell sudo docker ps -qa)
+rm_containers = docker container rm $(containers)
+images=$(shell sudo docker images -qa)
+rm_images = docker rmi $(images)
 
-NAME = vim
-
-
-all  :
-	@sudo ls > /dev/null
-	docker build -t $(NAME) .
-
-nginx :
+all :
 	docker build -t nginx nginx/
+	docker build -t mariadb mariadb/
 
 
 clean :
-	@sudo ls > /dev/null
-	$(rm_containers)
+	@if  [ -z "$(containers)" ]; then echo "no containers to delete" ; else  $(rm_containers) ;fi
 
 fclean : clean
-	@sudo ls > /dev/null
-	$(rm_images)
+	@if  [ -z "$(images)" ]; then echo "no images to delete"; else  $(rm_images);fi
+	@echo everything is clean no, just go ahead !
+	
 
 sfclean : prune fclean 
 
