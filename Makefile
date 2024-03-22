@@ -1,7 +1,7 @@
 containers=$(shell sudo docker ps -qa)
-rm_containers = docker container rm $(containers)
+rm_containers = docker container rm -f $(containers)
 images=$(shell sudo docker images -qa)
-rm_images = docker rmi $(images)
+rm_images = docker rmi -f $(images)
 
 all :
 	docker build -t nginx nginx/
