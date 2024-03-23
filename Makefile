@@ -4,9 +4,13 @@ images=$(shell sudo docker images -qa)
 rm_images = docker rmi -f $(images)
 
 all :
-	docker build -t nginx nginx/
-	docker build -t mariadb mariadb/
+	mkdir -p /Users/admansar/data/
+	docker-compose -f requirements  -d —build
+	#docker build -t nginx nginx/
+	#docker build -t mariadb mariadb/
 
+stop :
+	docker-compose -f requirements  stop
 
 clean :
 	@if  [ -z "$(containers)" ]; then echo "no containers to delete" ; else  $(rm_containers) ;fi
@@ -14,6 +18,7 @@ clean :
 fclean : clean
 	@if  [ -z "$(images)" ]; then echo "no images to delete"; else  $(rm_images);fi
 	@echo everything is clean no, just go ahead !
+	rm -rf volumes
 	
 
 sfclean : prune fclean 

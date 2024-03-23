@@ -2,9 +2,9 @@
 
 #service mariadb start 
 
-echo  "CREATE DATABASE IF NOT EXISTS $db1_name;" >> lol
-echo "CREATE USER IF NOT EXISTS '$db1_user'@'%' IDENTIFIED BY '$db1_pwd'; " >> lol
-echo "GRANT ALL PRIVILEGES ON $db1_name.* TO '$db1_user'@'%'; " >> lol
+echo  "CREATE DATABASE IF NOT EXISTS $SQL_DATABASE;" >> lol
+echo "CREATE USER IF NOT EXISTS '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD'; " >> lol
+echo "GRANT ALL PRIVILEGES ON $SQL_DATABASE.* TO '$SQL_USER'@'%'; " >> lol
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '12345'; " >> lol
 echo "FLUSH PRIVILEGES;" >> lol
 

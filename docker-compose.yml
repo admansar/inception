@@ -1,0 +1,68 @@
+version: '2'
+
+
+services:
+        mariadb:
+                build: requirements/mariadb 	
+                image: i_mariadb
+                container_name: mariadb
+                networks:
+                        - inception            			#network
+                env_file: .env                  #env variables file
+                volumes:                       
+                         - mariadb:/var/lib/mysql
+                restart: unless-stopped         #restart if it stops 
+                expose:                         #le port à exposer
+                                                        - "3306"
+        nginx:
+                build: requirements/nginx
+                image: i_nginx
+                container_name: nginx
+                volumes:
+                        - wordpress:/var/www/wordpress
+                networks:
+                        - inception
+                depends_on:        			 #do not start nginx until wordpress is already started 
+                                                                - wordpress
+                env_file: .env
+                ports:
+                        - "443:443" 		#on indique le port qui sera exposé a la machine locale
+                restart: on-failure 		#redemerer ssi en cas de crash 
+
+
+
+        wordpress:
+                build: requirements/wordpress
+                image: i_wordpress
+                container_name: wordpress
+                env_file: .env
+                volumes:
+                        - wordpress:/var/www/wordpress
+                networks:
+                        - inception
+                depends_on:    				
+                                                        - mariadb
+                restart: on-failure
+                expose:
+                        - "9000"
+
+
+
+networks:
+        inception:
+                driver: bridge
+
+volumes:
+        wordpress:
+                driver: local #in this volume
+                driver_opts:
+                        type: 'none' 
+                        device: '/Users/admansar/data/wordpress' 
+                        o: 'bind' #bind mount, means that its directly mapped to the directory with the container 
+        mariadb:
+                driver: local
+                driver_opts:
+                        type: 'none'
+                        o: 'bind'
+                        device: '/Users/admansar/data/mariadb'		
+
