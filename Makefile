@@ -4,8 +4,8 @@ images=$(shell sudo docker images -qa)
 rm_images = docker rmi -f $(images)
 
 all :
-	mkdir -p /Users/admansar/data/
-	docker-compose -f requirements  -d —build
+	#mkdir -p /Users/admansar/data/
+	docker-compose -f srcs/docker-compose.yml up
 	#docker build -t nginx nginx/
 	#docker build -t mariadb mariadb/
 

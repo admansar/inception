@@ -2,7 +2,7 @@ FROM debian:12
 
 RUN apt update && apt upgrade -y 
 
-RUN apt install vim wget php7.3 php-fpm php-mysql mariadb-client -y
+RUN apt install vim wget php php-fpm php-mysql mariadb-client -y
 
 RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www && cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
 
