@@ -2,10 +2,11 @@ containers=$(shell sudo docker ps -qa)
 rm_containers = docker container rm -f $(containers)
 images=$(shell sudo docker images -qa)
 rm_images = docker rmi -f $(images)
+user:=$USER
 
 all :
-	#mkdir -p /Users/admansar/data/
-	docker-compose -f srcs/docker-compose.yml up
+	mkdir -p /home/admansar/data/
+	docker compose -f srcs/docker-compose.yml up
 	#docker build -t nginx nginx/
 	#docker build -t mariadb mariadb/
 
