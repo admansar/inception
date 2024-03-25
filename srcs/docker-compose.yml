@@ -19,7 +19,7 @@ services:
                 image: i_nginx
                 container_name: nginx
                 volumes:
-                        - wordpress:/var/www/wordpress
+                        - wordpress:/var/www/html
                 networks:
                         - inception
                 env_file: .env
@@ -33,7 +33,7 @@ services:
                 image: i_wordpress
                 container_name: wordpress
                 volumes:
-                        - wordpress:/var/www/wordpress
+                        - wordpress:/var/www/html
                 networks:
                         - inception
                 env_file: .env

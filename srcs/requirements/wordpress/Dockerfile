@@ -5,8 +5,11 @@ RUN apt update && apt upgrade -y
 RUN apt install vim wget php php-fpm php-mysql mariadb-client -y
 
 RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www 
+
 RUN tar -xzf /var/www/wordpress-6.0-fr_FR.tar.gz -C /var/www 
+
 RUN mv /var/www/wordpress/* /var/www/html 
+
 RUN rm -rf /var/www/wordpress-6.0-fr_FR.tar.gz /var/www/wordpress
 
 RUN chown -R www-data:www-data /var/www/html
