@@ -10,4 +10,4 @@ COPY run_it.sh /
 
 EXPOSE 3306
 
-RUN bash run_it.sh 
+CMD bash run_it.sh 
