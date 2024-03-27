@@ -1,26 +1,25 @@
-FROM debian:12
+FROM debian:stable
 
-RUN apt update && apt upgrade -y 
+RUN apt update -y
 
-RUN apt install vim wget php php-fpm php-mysql mariadb-client -y
+RUN apt install -y php8.2-fpm
 
-RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www 
+RUN apt install -y php8.2
 
-RUN tar -xzf /var/www/wordpress-6.0-fr_FR.tar.gz -C /var/www 
+RUN apt install php8.2-mysql
 
-RUN mv /var/www/wordpress/* /var/www/html 
+RUN apt install -y wget
 
-RUN rm -rf /var/www/wordpress-6.0-fr_FR.tar.gz /var/www/wordpress
+RUN apt install -y unzip
 
-RUN chown -R www-data:www-data /var/www/html
+RUN apt install -y curl
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN sed -i "s|listen = /run/php/php8.2-fpm.sock|listen = 0.0.0.0:9000|g" /etc/php/8.2/fpm/pool.d/www.conf
 
-RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+COPY . /wordpressSetUp
 
-COPY ./www.conf /etc/php/8.2/fpn/pool.d/www.conf
+EXPOSE 9000
 
-COPY ./run_wp.sh /
+RUN mkdir -p /var/www/html
 
-CMD bash /run_wp.sh
-
+CMD ["sh", "/wordpressSetUp/tools/setup.sh"]
