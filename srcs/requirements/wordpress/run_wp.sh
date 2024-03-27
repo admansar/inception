@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-cd /var/www/html
+#cd /var/www/html
 
-wp core download --allow-root
+wp core download --allow-root 
 wp cli update
 wp config create	--allow-root \
 	--dbname=$SQL_DATABASE \
