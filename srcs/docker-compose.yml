@@ -2,18 +2,29 @@ version: '2'
 
 
 services:
+  # mariadb:
+  #              build: requirements/mariadb 	
+  #              image: i_mariadb
+  #              container_name: mariadb
+  #              volumes:                       
+  #                       - mariadb:/var/lib/mysql
+  #              networks:
+  #                      - inception            			#network
+  #              env_file: .env                  #env variables file
+  #              restart: unless-stopped         #restart if it stops 
+  #              ports:
+  #                  - "3306:3306"
         mariadb:
-                build: requirements/mariadb 	
-                image: i_mariadb
+                image: mariadb
                 container_name: mariadb
-                volumes:                       
-                         - mariadb:/var/lib/mysql
+                volumes:
+                  - mariadb:/var/lib/mysql
                 networks:
-                        - inception            			#network
-                env_file: .env                  #env variables file
-                restart: unless-stopped         #restart if it stops 
+                  - inception
+                restart: always
+                env_file: .env
                 ports:
-                    - "3306:3306"
+                  - "3306:3306"
         nginx:
                 build: requirements/nginx
                 image: i_nginx
