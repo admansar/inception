@@ -1,13 +1,16 @@
-FROM debian:12
+FROM debian:stable
 
-RUN apt update && apt upgrade -y
+RUN apt update -y 
 
-RUN apt install mariadb-server -y
+RUN apt install -y mariadb-server
 
-COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-COPY run_it.sh /
+COPY ./ /maria
+
+RUN mkdir -p /run/mysqld
 
 EXPOSE 3306
 
-CMD bash run_it.sh 
+CMD ["sh", "/maria/tools/script.sh"]
+
