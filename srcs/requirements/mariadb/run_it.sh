@@ -1,14 +1,13 @@
 #!/bin/bash
 
-mkdir -p /run/mysql && chown -R mysql:mysql /run/mysql
+mkdir -p /run/mysqld
 
 service mariadb start
 
-
-echo "CREATE DATABASE IF NOT EXISTS $SQL_DATABASE ;" > lol
-echo "CREATE USER IF NOT EXISTS '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD' ;" >> lol
-echo "GRANT ALL PRIVILEGES ON $SQL_DATABASE.* TO '$SQL_USER'@'%' ;" >> lol
-#echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '12345' ;" >> lol
+echo "CREATE DATABASE IF NOT EXISTS $MARIADB_DATABASE ;" > lol
+echo "CREATE USER IF NOT EXISTS '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PASSWORD' ;" >> lol
+echo "GRANT ALL PRIVILEGES ON $MARIADB_DATABASE.* TO '$MARIADB_USER'@'%' ;" >> lol
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD' ;" >> lol
 echo "FLUSH PRIVILEGES;" >> lol
 
 mariadbd --user=mysql --bootstrap < lol
@@ -17,4 +16,4 @@ rm  lol
 
 service mariadb stop
 
-mysqld_safe --user=mysql --bind-address=0.0.0.0
+mariadbd --user=root 
