@@ -42,6 +42,19 @@ services:
                   - "9000:9000"
                 depends_on:    				
                         - mariadb
+        redis:
+                build: requirements/bonus/redis
+                image: i_redis
+                container_name: redis
+                volumes:
+                        - wordpress:/var/www/html
+                ports:
+                  - "6379:6379"
+                networks:
+                  - inception
+                depends_on:
+                  - wordpress
+                restart: always
 
 
 

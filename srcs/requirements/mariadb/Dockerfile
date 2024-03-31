@@ -1,6 +1,6 @@
-FROM debian:stable
+FROM debian:12
 
-RUN apt update -y 
+RUN apt update && apt upgrade -y 
 
 RUN apt install -y mariadb-server
 
