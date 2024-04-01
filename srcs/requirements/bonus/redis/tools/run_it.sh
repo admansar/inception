@@ -15,9 +15,9 @@ then
 		sleep 1;
 	done
 	etime=$(date +%s);
-	echo waited for $((etime - stime)) seconds , finishing the redis server ....
-	echo "define('WP_CACHE_KEY_SALT', 'admansar.42.fr');" >> /var/www/html/wp-config.php
-	echo "define('WP_CACHE', true);" >> /var/www/html/wp-config.php
+	echo waited for $((etime - stime)) seconds, finishing the redis server ....
+	vim -s /add_redis_conf.vim /var/www/html/wp-config.php
+
 fi
 
 
