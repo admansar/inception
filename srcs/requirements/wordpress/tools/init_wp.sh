@@ -11,7 +11,7 @@ then
 	wp --allow-root --path=/var/www/html/ config create --dbname=$MARIADB_DATABASE --dbuser=$MARIADB_USER --dbpass=$MARIADB_PASSWORD --dbhost=mariadb:3306
 	wp --allow-root --path=/var/www/html/ core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_name=$ADMIN_NAME --admin_password=$ADMIN_PASSWORD --admin_email=$WP_EMAIL
 	wp --allow-root user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASSWORD
-	wp --allow-root theme install twentytwentythree --activate
+	wp --allow-root theme install twentytwentytwo --activate
 	wp plugin install redis-cache --activate --allow-root
 	wp redis enable --allow-root
 	#wp --allow-root plugin install redis-object-cache --activate
