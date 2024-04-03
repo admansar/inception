@@ -2,7 +2,7 @@
 services:
         mariadb:
                 build: requirements/mariadb 	
-                image: i_mariadb
+                image: mariadb:42
                 container_name: mariadb
                 volumes:                       
                          - mariadb:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
                  - "3306:3306"
         nginx:
                build: requirements/nginx
-               image: i_nginx
+               image: nginx:42
                container_name: nginx
                volumes:
                        - wordpress:/var/www/html
@@ -28,7 +28,7 @@ services:
                        - wordpress
         wordpress:
                 build: requirements/wordpress
-                image: i_wordpress
+                image: wordpress:42
                 container_name: wordpress
                 volumes:
                         - wordpress:/var/www/html
@@ -42,7 +42,7 @@ services:
                         - mariadb
         redis:
                 build: requirements/bonus/redis
-                image: i_redis
+                image: redis:42
                 container_name: redis
                 volumes:
                         - wordpress:/var/www/html
@@ -55,7 +55,7 @@ services:
                 restart: always
         adminer:
                 build: requirements/bonus/adminer
-                image: i_adminer
+                image: adminer:42
                 container_name: adminer
                 restart: always
                 ports:
@@ -66,7 +66,7 @@ services:
                   - mariadb
         ftp-server:
                 build: requirements/bonus/ftp-server
-                image: i_ftp-server
+                image: ftp-server:42
                 container_name: ftp-server
                 volumes:
                   - wordpress:/var/www/html
@@ -75,7 +75,7 @@ services:
                 depends_on: 
                   - wordpress
                 ports:
-                  - "21:21"
+                  - "210:21"
                 networks:
                   - inception
 
