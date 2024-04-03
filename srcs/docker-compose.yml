@@ -2,7 +2,7 @@
 services:
         mariadb:
                 build: requirements/mariadb 	
-                image: mariadb:42
+                image: mariadb:1337
                 container_name: mariadb
                 volumes:                       
                          - mariadb:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
                  - "3306:3306"
         nginx:
                build: requirements/nginx
-               image: nginx:42
+               image: nginx:1337
                container_name: nginx
                volumes:
                        - wordpress:/var/www/html
@@ -28,7 +28,7 @@ services:
                        - wordpress
         wordpress:
                 build: requirements/wordpress
-                image: wordpress:42
+                image: wordpress:1337
                 container_name: wordpress
                 volumes:
                         - wordpress:/var/www/html
@@ -42,7 +42,7 @@ services:
                         - mariadb
         redis:
                 build: requirements/bonus/redis
-                image: redis:42
+                image: redis:1337
                 container_name: redis
                 volumes:
                         - wordpress:/var/www/html
@@ -55,7 +55,7 @@ services:
                 restart: always
         adminer:
                 build: requirements/bonus/adminer
-                image: adminer:42
+                image: adminer:1337
                 container_name: adminer
                 restart: always
                 ports:
@@ -66,7 +66,7 @@ services:
                   - mariadb
         ftp-server:
                 build: requirements/bonus/ftp-server
-                image: ftp-server:42
+                image: delfer/alpine-ftp-server
                 container_name: ftp-server
                 volumes:
                   - wordpress:/var/www/html
@@ -75,7 +75,7 @@ services:
                 depends_on: 
                   - wordpress
                 ports:
-                  - "210:21"
+                  - "201:21"
                 networks:
                   - inception
 
