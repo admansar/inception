@@ -74,8 +74,6 @@ services:
                 env_file: ./.env
                 depends_on: 
                   - wordpress
-                ports:
-                  - "201:21"
                 networks:
                   - inception
 
