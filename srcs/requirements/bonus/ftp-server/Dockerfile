@@ -4,7 +4,7 @@ RUN apt update && apt upgrade -y
 
 RUN apt install -y vsftpd vim ftp
 
-EXPOSE 201
+EXPOSE 2001
 
 COPY ./tools /
 

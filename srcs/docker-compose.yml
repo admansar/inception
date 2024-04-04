@@ -75,7 +75,7 @@ services:
                 depends_on: 
                   - wordpress
                 ports:
-                  - "210:21"
+                  - "2001:21"
                 networks:
                   - inception
         netdata:
@@ -84,7 +84,7 @@ services:
                 container_name: netdata
                 restart: always
                 ports:
-                  - "3000:19999"
+                  - "2000:19999"
                 networks:
                   - inception
 
