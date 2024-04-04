@@ -78,6 +78,15 @@ services:
                   - "210:21"
                 networks:
                   - inception
+        netdata:
+                build: requirements/bonus/netdata
+                image: netdata:1337
+                container_name: netdata
+                restart: always
+                ports:
+                  - "3000:19999"
+                networks:
+                  - inception
 
 
 networks:
