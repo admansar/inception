@@ -10,10 +10,11 @@ sudo :
 	@sudo -v
 
 up : sudo
-	mkdir -p $(data)/mariadb
-	mkdir -p $(data)/wordpress
-	docker compose -f srcs/docker-compose.yml up -d
 	$(emo)
+	@mkdir -p $(data)/mariadb
+	@mkdir -p $(data)/wordpress
+	@mkdir -p $(data)/static-website
+	@docker compose -f srcs/docker-compose.yml up -d
 
 stop :
 	docker compose -f srcs/docker-compose.yml  stop
@@ -24,14 +25,14 @@ clean :
 fclean : clean
 	@if  [ -z "$(images)" ]; then echo "no images to delete"; else  $(rm_images);fi
 	@echo everything is clean no, just go ahead !
-	@sudo rm -rf $(data)
 
 sfclean : fclean prune 
 
 prune :
-	docker buildx prune -af
-	docker system prune --volumes -f
-	docker network prune -f
+	@docker buildx prune -af
+	@docker system prune --volumes -f
+	@docker network prune -f
+	@sudo rm -rf $(data)
 
 re : sudo fclean all
 
@@ -42,6 +43,11 @@ emo :
 
 define emo
 
+@clear
+@echo
+@echo
+@echo
+@echo
 @echo " ██████  ███    ██ ███████      ██████  ██████  ███    ██ ████████  █████  ██ ███    ██ ███████ ██████ "
 @echo "██    ██ ████   ██ ██          ██      ██    ██ ████   ██    ██    ██   ██ ██ ████   ██ ██      ██   ██"
 @echo "██    ██ ██ ██  ██ █████       ██      ██    ██ ██ ██  ██    ██    ███████ ██ ██ ██  ██ █████   ██████ "
@@ -55,6 +61,7 @@ define emo
 @echo "██      ██     ██  ██ ██ ██    ██    ██        ██      ██  ██ ██ ██    ██ ██    ██ ██    ██ ██   ██ "
 @echo "██ ███████     ██   ████  ██████     ██        ███████ ██   ████  ██████   ██████   ██████  ██   ██ "
 @echo
+@sleep 1
 @echo
 @echo "\033[38;5;196m"
 @echo "██     ██ ███████     ███    ██ ███████ ███████ ██████      ████████  ██████       ██████   ██████  "
@@ -75,6 +82,12 @@ define emo
 @echo -n "\033[38;5;52m"
 @echo " \t\t\t██████  ███████ ███████ ██      ███████ ██   ██"
 @echo "\033[0m"
+@echo
+@echo
+@echo
+@echo
+@sleep 2
+@clear
                                                                                                                                                                                                      
 
 endef

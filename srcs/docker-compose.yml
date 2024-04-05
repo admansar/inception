@@ -23,7 +23,7 @@ services:
                env_file: .env
                restart: on-failure 		#redemerer ssi en cas de crash 
                ports:
-                       - "443:443" 		#on indique le port qui sera exposé a la machine locale
+                       - "443:443" 	#on indique le port qui sera exposé a la machine locale
                depends_on:        			 #do not start nginx until wordpress is already started 
                        - wordpress
         wordpress:
@@ -87,6 +87,15 @@ services:
                   - "2000:19999"
                 networks:
                   - inception
+        static-website:
+                build: requirements/bonus/static-website
+                image: static-website:1337
+                container_name: static-website
+                  #restart: on-failure
+                ports:
+                  - "8000:80"
+                networks:
+                  - inception
 
 
 networks:
@@ -106,4 +115,5 @@ volumes:
                         type: 'none'
                         o: 'bind'
                         device: '/home/admansar/data/mariadb'		
+
 

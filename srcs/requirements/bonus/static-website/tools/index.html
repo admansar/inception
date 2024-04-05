@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Docker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #007bff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        }
+        .docker-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="docker-icon">
+        <img src="https://img.icons8.com/color/48/000000/docker.png" alt="Docker Icon">
+    </div>
+    <h1>What is Docker and What is it Used For?</h1>
+    <p>
+        Docker is an open-source platform that enables developers to automate the deployment of applications inside lightweight, portable containers.
+        These containers package up all the necessary dependencies and configurations, allowing applications to run seamlessly across different environments, from development to production.
+        Docker revolutionizes the way software is developed, shipped, and deployed by providing a consistent environment for applications to run, regardless of the underlying infrastructure.
+    </p>
+
+    <h1>Docker Daemon</h1>
+    <p>
+        The Docker daemon, also known as <code>dockerd</code>, is a persistent process that runs in the background on a host machine.
+        It listens for Docker API requests and manages Docker objects such as images, containers, volumes, and networks.
+        The Docker daemon is responsible for building, running, and distributing Docker containers based on user commands and instructions.
+    </p>
+
+    <h1>Docker Image</h1>
+    <p>
+    A Docker image is a lightweight, standalone, executable package that contains everything needed to run a piece of software, including the code, runtime, libraries, environment variables, and dependencies. Docker images are built from a Dockerfile and can be distributed via Docker Hub or other container registries. Images are used as templates to create Docker containers, making it easy to share and deploy applications across different environments.
+    </p>
+
+    <h1>Container</h1>
+    <p>
+    A Docker container is a runtime instance of a Docker image. It encapsulates an application and its dependencies, along with configuration settings, into a single, isolated unit. Containers provide a consistent environment for running applications, ensuring that they behave the same way regardless of the host system. Unlike virtual machines, containers share the host machine's kernel and do not require a separate operating system, resulting in faster startup times and reduced resource overhead.
+    </p>
+
+    <h1>Dockerfile</h1>
+    <p>
+    A Dockerfile is a text file that contains instructions for building a Docker image. It defines the environment and dependencies needed for an application to run within a Docker container. Dockerfiles use a simple, declarative syntax to specify commands such as FROM, RUN, COPY, EXPOSE, and CMD, allowing developers to automate the image-building process and create reproducible builds.
+    </p>
+    <h1>Namespaces</h1>
+    <p>
+    Namespaces are a Linux kernel feature used by Docker to provide process isolation and resource management for containers. Docker uses namespaces such as PID, network, mount, IPC, and user to create isolated environments for containers, ensuring that each container has its own view of the system resources. Namespaces prevent processes running inside containers from interfering with each other or the host system, enhancing security and stability.
+    </p>
+    <h1>How Docker and Docker Compose Work ?</h1>
+    <p>
+    Docker works by interacting with the Docker daemon, which manages Docker objects and performs tasks such as building, running, and distributing Docker containers. Docker Compose is a tool that simplifies the management of multi-container Docker applications by defining them in a single YAML file. Docker Compose allows developers to specify the services, networks, and volumes required for their applications and orchestrates the deployment and scaling of containers.
+    </p>
+
+    <h1>Docker Image with and without Docker Compose</h1>
+    <p>
+    When using Docker Compose, Docker images are specified in a docker-compose.yml file along with other configuration options such as environment variables, ports, and volumes. Docker Compose simplifies the process of managing multi-container applications by allowing developers to define and run them with a single command (docker-compose up). Without Docker Compose, Docker images are managed individually using commands such as docker build, docker run, and docker push, making it more complex to orchestrate and scale multi-container applications.
+    </p>
+    <h1>Benefits of Docker Compared to VMs</h1>
+    <p>
+    Docker offers several advantages over traditional virtual machines (VMs), including:
+Resource Efficiency: Containers share the host machine's kernel, resulting in lower resource overhead compared to VMs.
+Portability: Docker containers can run on any system that supports Docker, making them highly portable across different environments.
+Isolation: Containers provide lightweight, isolated environments for applications, ensuring that they do not interfere with each other or the host system.
+Scalability: Docker makes it easy to scale applications by running multiple containers across distributed systems, leveraging features such as Docker Swarm and Kubernetes.
+    </p>
+    <h1>Docker Networking</h1>
+    <p>
+    Docker networking allows containers to communicate with each other and the outside world. Docker provides several networking options, including bridge, host, overlay, and macvlan networks, to suit different use cases and environments. Docker networking enables containers to access external resources, communicate with other containers, and expose services to external clients while ensuring security and isolation.
+    </p>
+
+</body>
+</html>
