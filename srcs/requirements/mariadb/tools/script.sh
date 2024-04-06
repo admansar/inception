@@ -6,7 +6,7 @@ sed -i "s/mysqlRootPass/${MARIADB_ROOT_PASSWORD}/" /tools/init.maria
 
 sed -i "s/mysqlDb/${WP_DATABASE}/" /tools/init.maria
 
-sed -i "s/mysqlTable/${MYSQL_TABLE_NAME}/" /tools/init.maria
+sed -i "s/mysqlTable/${MARIADB_TABLE_NAME}/" /tools/init.maria
 
 mariadbd --bootstrap --user=root < /tools/init.maria
 
