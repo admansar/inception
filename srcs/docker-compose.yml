@@ -13,6 +13,9 @@ services:
                   WP_DATABASE: ${WP_DATABASE}
                   MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
                   MARIADB_TABLE_NAME: ${MARIADB_TABLE_NAME}
+                env_file: .env
+                ports:
+                  - "3306:3306"
                 restart: always         #restart if it stops 
         nginx:
                build: requirements/nginx
@@ -35,8 +38,6 @@ services:
                         - wordpress:/var/www/html
                 networks:
                         - inception
-                env_file: .env
-
                 environment:
                   DOMAIN_NAME: ${DOMAIN_NAME}
                   WP_TITLE: ${WP_TITLE}
@@ -48,6 +49,7 @@ services:
                   MARIADB_DATABASE: ${MARIADB_DATABASE}
                   MARIADB_USER: ${MARIADB_USER}
                   MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+                env_file: .env
                 restart: on-failure
                 depends_on:    				
                         - mariadb
