@@ -3,8 +3,48 @@ rm_containers = docker container rm -f $(containers)
 images=$(shell sudo docker images -qa)
 rm_images = docker rmi -f $(images)
 data=/home/admansar/data
+envp=/home/admansar/inception/srcs/.env
+all : check
 
-all : up
+check:
+	@if [ -f srcs/.env ]; then \
+		$(MAKE) up; \
+		else \
+		echo "-------------------------------------------------"; \
+		echo "|ERROR: Missing .env file inside the srcs folder.|"; \
+		echo "|To see an example, run         'make env'.      |"; \
+		echo "-------------------------------------------------"; \
+		exit 0; \
+		fi
+
+env:
+	if [ -f srcs/.env ]; then \
+		echo "its already there !!"; \
+		else \
+		$(MAKE) creat-env; \
+		fi
+
+
+creat-env:
+	@echo env file created with succes ... please add your data to it
+	@sleep 1
+	@echo "DOMAIN_NAME=" >> $(envp)
+	@echo "WP_TITLE=" >> $(envp)
+	@echo "WP_USER=" >> $(envp)
+	@echo "WP_PASSWORD=" >> $(envp)
+	@echo "WP_EMAIL=" >> $(envp)
+	@echo "ADMIN_NAME=" >> $(envp)
+	@echo "ADMIN_PASSWORD=" >> $(envp)
+	@echo "ADMIN_EMAIL=" >> $(envp)
+	@echo "WP_DATABASE=" >> $(envp)
+	@echo "MARIADB_USER=" >> $(envp)
+	@echo "MARIADB_PASSWORD=" >> $(envp)
+	@echo "MARIADB_DATABASE=" >> $(envp)
+	@echo "MARIADB_ROOT_PASSWORD=" >> $(envp)
+	@echo "MARIADB_TABLE_NAME=" >> $(envp)
+	@echo "FTP_USER=" >> $(envp)
+	@echo "FTP_PASS=" >> $(envp)
+	@vim $(envp)
 
 sudo :
 	@sudo -v
